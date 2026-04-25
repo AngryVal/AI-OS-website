@@ -89,6 +89,7 @@ p { margin: 0; }
   border-top: 1px solid var(--hairline);
 }
 .band-light { background: #F5F6F6; }
+.band-feature { background: #F0FBF5; }   /* whisper of mint, for the headline section */
 .band-ink {
   background: var(--ink);
   color: var(--ink-paper);
@@ -143,6 +144,18 @@ p { margin: 0; }
   font-weight: 500;
 }
 .site-header nav .nav-cta:hover { background: var(--ink); color: var(--paper); opacity: 1; }
+
+.site-header nav .version-pill {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--hairline-strong);
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+.site-header nav .version-pill:hover { background: var(--mint); border-color: var(--mint); color: var(--ink); opacity: 1; }
 
 @media (max-width: 720px) {
   .site-header nav { gap: 16px; }
@@ -363,6 +376,172 @@ p { margin: 0; }
   color: var(--ink);
   border-left: 2px solid var(--mint);
   padding-left: 18px;
+}
+
+/* ----- Gains grid (productivity hook) ------------------------------------ */
+
+.gains {
+  list-style: none; padding: 0; margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--hairline);
+}
+.gain {
+  padding: 28px 26px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: transparent;
+}
+.gain-num {
+  font-family: var(--serif);
+  font-feature-settings: "tnum";
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.gain-num span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--neutral);
+  font-weight: 500;
+}
+.gain h3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.005em;
+}
+.gain p {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--neutral);
+}
+
+@media (max-width: 980px) {
+  .gains { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .gains { grid-template-columns: 1fr; }
+}
+
+/* ----- "Building the OS" ladder ------------------------------------------ */
+
+.lede-secondary {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.lede-secondary em {
+  font-style: italic;
+  color: var(--mint-deep);
+}
+
+.ladder {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 32px;
+  border-top: 2px solid var(--ink);
+  border-left: 1px solid var(--hairline);
+}
+.rung {
+  padding: 20px 18px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+}
+.rung-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  color: var(--mint-deep);
+  margin: 0 0 8px 0;
+}
+.rung h3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 4px 0;
+}
+.rung p {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--neutral);
+}
+
+@media (max-width: 720px) {
+  .ladder { grid-template-columns: 1fr; }
+}
+
+/* ----- Automations grid (replaces 8 modules) ----------------------------- */
+
+.automations {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--hairline);
+}
+.auto {
+  padding: 28px 24px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--paper);
+}
+.auto-time {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mint-deep);
+  margin: 0 0 14px 0;
+}
+.auto h3 {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.005em;
+}
+.auto p {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--neutral);
+}
+
+.auto-anchor {
+  margin-top: 36px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink);
+  border-left: 2px solid var(--mint);
+  padding-left: 20px;
+  max-width: 70ch;
+}
+
+@media (max-width: 1080px) {
+  .automations { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .automations { grid-template-columns: 1fr; }
 }
 
 /* ----- Phases (How it works) --------------------------------------------- */
