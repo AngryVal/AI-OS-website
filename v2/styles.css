@@ -442,20 +442,6 @@ p { margin: 0; }
 .gain:hover .num-big { color: var(--mint); }
 .gain:hover .num-unit { color: var(--ink-neutral); }
 
-.gain.g-feature {
-  background: var(--ink);
-  color: var(--ink-paper);
-}
-.gain.g-feature h3 { color: var(--ink-paper); }
-.gain.g-feature p { color: var(--ink-neutral); }
-.gain.g-feature .num-big { color: var(--mint); }
-.gain.g-feature .num-unit { color: var(--ink-neutral); }
-
-.gain.g-feature:hover { background: var(--paper); color: var(--ink); }
-.gain.g-feature:hover h3 { color: var(--ink); }
-.gain.g-feature:hover p { color: var(--neutral); }
-.gain.g-feature:hover .num-big { color: var(--ink); }
-.gain.g-feature:hover .num-unit { color: var(--neutral); }
 
 .gain-num {
   margin: 0 0 16px 0;
