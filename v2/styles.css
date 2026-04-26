@@ -283,12 +283,12 @@ p { margin: 0; }
 }
 .hstat-unit {
   font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ink-neutral);
-  margin: 8px 0 14px 0;
+  color: var(--ink-paper);
+  margin: 10px 0 16px 0;
 }
 .hstat-cap {
   font-size: 14px;
@@ -426,9 +426,21 @@ p { margin: 0; }
   border-right: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
   background: var(--paper);
-  transition: background-color 160ms ease;
+  transition: background-color 160ms ease, color 160ms ease;
 }
-.gain:hover { background: var(--mint-soft); }
+.gain h3,
+.gain p,
+.gain .num-big,
+.gain .num-unit { transition: color 160ms ease; }
+
+.gain:hover {
+  background: var(--ink);
+  color: var(--ink-paper);
+}
+.gain:hover h3 { color: var(--ink-paper); }
+.gain:hover p { color: var(--ink-neutral); }
+.gain:hover .num-big { color: var(--mint); }
+.gain:hover .num-unit { color: var(--ink-neutral); }
 
 .gain.g-feature {
   background: var(--ink);

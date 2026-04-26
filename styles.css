@@ -272,10 +272,11 @@ p { margin: 0; }
 }
 .stat-unit {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--neutral);
+  color: var(--ink);
   align-self: end;
 }
 .stat p {
@@ -393,7 +394,21 @@ p { margin: 0; }
   border-right: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
   background: transparent;
+  transition: background-color 160ms ease, color 160ms ease;
 }
+.gain h3,
+.gain p,
+.gain .gain-num,
+.gain .gain-num span { transition: color 160ms ease; }
+
+.gain:hover {
+  background: var(--ink);
+  color: var(--ink-paper);
+}
+.gain:hover h3 { color: var(--ink-paper); }
+.gain:hover p { color: var(--ink-neutral); }
+.gain:hover .gain-num { color: var(--mint); }
+.gain:hover .gain-num span { color: var(--ink-neutral); }
 .gain-num {
   font-family: var(--serif);
   font-feature-settings: "tnum";
