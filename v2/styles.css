@@ -1,8 +1,9 @@
 /* ==========================================================================
-   CEO AI OS — Three Tomorrows · V2 (brand-forward)
-   Charcoal-led. Mint as a confident accent. Sans-only typography to
-   approximate the Neue Montreal feel of the brand guidelines.
+   AI Operator — Three Tomorrows · V3
+   Charcoal-led. Mint as a confident accent. Sans-only typography.
    No shadows, no gradients beyond a single hairline rule per band.
+   v3 changes: new components for "Concretely", "Tuesday morning",
+   "What you'll see" automation lines, and the diagram frame.
    ========================================================================== */
 
 :root {
@@ -28,7 +29,7 @@
   --ink-hairline-2:   #444848;
   --ink-neutral:      #A8ACAC;
 
-  /* Type — sans-only stack to approximate Neue Montreal / RNS Physis register */
+  /* Type */
   --display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --sans:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --mono:    "JetBrains Mono", "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -412,6 +413,164 @@ p { margin: 0; }
   .who-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 
+/* ----- NEW v3 — "Concretely" three-column block --------------------------- */
+
+.concretely {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 2px solid var(--ink);
+  border-left: 1px solid var(--hairline);
+}
+.concretely-col {
+  padding: 36px 28px;
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--paper);
+}
+.concretely-label {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px 0;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 14px;
+}
+.concretely-label::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 32px; height: 3px;
+  background: var(--mint);
+}
+.concretely-col p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+@media (max-width: 980px) {
+  .concretely { grid-template-columns: 1fr; }
+}
+
+/* ----- NEW v3 — Tuesday morning timeline --------------------------------- */
+
+.tuesday-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
+  gap: 80px;
+  align-items: start;
+}
+.tuesday-label .title {
+  color: var(--ink-paper);
+  font-size: clamp(34px, 4.4vw, 56px);
+}
+.tuesday-lede {
+  font-family: var(--display);
+  font-size: clamp(17px, 1.4vw, 19px);
+  line-height: 1.5;
+  color: var(--ink-neutral);
+  margin-top: 24px !important;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.tuesday-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+.tuesday-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 2px;
+  background: var(--mint);
+  opacity: 0.45;
+}
+
+.tuesday-beat {
+  position: relative;
+  padding: 22px 0 22px 36px;
+  border-bottom: 1px solid var(--ink-hairline);
+}
+.tuesday-beat:last-child { border-bottom: 0; }
+.tuesday-beat::before {
+  content: "";
+  position: absolute;
+  left: -5px; top: 32px;
+  width: 12px; height: 12px;
+  background: var(--mint);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+
+.tuesday-time {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin: 0 0 10px 0;
+}
+.tuesday-body {
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.6;
+  color: var(--ink-paper);
+  margin: 0;
+}
+.tuesday-body strong {
+  color: var(--mint);
+  font-weight: 600;
+}
+.tuesday-body em {
+  font-style: italic;
+  color: var(--ink-paper);
+  opacity: 0.9;
+}
+
+@media (max-width: 880px) {
+  .tuesday-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 720px) {
+  .tuesday-beat { padding-left: 24px; }
+  .tuesday-timeline::before { left: 0; }
+  .tuesday-beat::before { left: -5px; }
+}
+
+/* ----- NEW v3 — Diagram frame --------------------------------------------- */
+
+.diagram-frame {
+  margin: 0 auto 64px auto;
+  max-width: 720px;
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+}
+.diagram-frame img {
+  width: 100%;
+  height: auto;
+}
+.diagram-caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--neutral);
+  text-align: center;
+  margin-top: 18px;
+}
+
+@media (max-width: 720px) {
+  .diagram-frame { padding: 16px; margin-bottom: 48px; }
+}
+
 /* ----- Gains grid (productivity hook) ------------------------------------ */
 
 .gains {
@@ -579,6 +738,8 @@ p { margin: 0; }
   background: var(--paper);
   transition: background-color 160ms ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .auto::before {
   content: "";
@@ -599,6 +760,7 @@ p { margin: 0; }
   padding: 4px 8px;
   border-radius: 4px;
   display: inline-block;
+  align-self: flex-start;
   margin: 0 0 16px 0;
 }
 .auto h3 {
@@ -608,10 +770,47 @@ p { margin: 0; }
   margin: 0 0 10px 0;
   letter-spacing: -0.015em;
 }
-.auto p {
+.auto > p {
   font-size: 14.5px;
   line-height: 1.55;
   color: var(--neutral);
+}
+
+/* NEW v3 — "What you'll see" line on automation cards */
+.auto-see {
+  margin-top: auto;
+  padding-top: 16px;
+  margin-top: 18px;
+  border-top: 1px solid var(--hairline);
+}
+.auto-see-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mint-deep);
+  margin: 0 0 8px 0;
+}
+.auto-see-body {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0;
+}
+.auto-see-body code {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  background: var(--mint-soft);
+  color: var(--ink);
+  padding: 1px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.auto-see-body em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 500;
 }
 
 .auto-totaliser {
