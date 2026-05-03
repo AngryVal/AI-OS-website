@@ -1,9 +1,10 @@
 /* ==========================================================================
-   AI Operator — Three Tomorrows · V3
+   AI Operator — Three Tomorrows · V3.1
    Charcoal-led. Mint as a confident accent. Sans-only typography.
-   No shadows, no gradients beyond a single hairline rule per band.
-   v3 changes: new components for "Concretely", "Tuesday morning",
-   "What you'll see" automation lines, and the diagram frame.
+   v3.1 changes:
+     - Section 2 "What you get" — left-aligned text column + right image well
+     - Section 3 "Tuesday morning" — per-beat timeline rail with image well
+     - Section 4 "The system" — header + diagram removed; quadrants only
    ========================================================================== */
 
 :root {
@@ -196,6 +197,9 @@ p { margin: 0; }
 }
 
 .section-head { margin-bottom: 64px; max-width: 880px; }
+.section-head-flush { margin-bottom: 36px; max-width: none; }
+.section-head-charcoal { margin-bottom: 56px; max-width: 880px; }
+.section-head-charcoal .title { color: var(--ink-paper); }
 
 .display {
   font-family: var(--display);
@@ -413,162 +417,202 @@ p { margin: 0; }
   .who-grid { grid-template-columns: 1fr; gap: 24px; }
 }
 
-/* ----- NEW v3 — "Concretely" three-column block --------------------------- */
+/* ==========================================================================
+   v3.1 — Section 2: "What you get"
+   Left-aligned content stack on the left, image well on the right.
+   ========================================================================== */
 
-.concretely {
+.concretely-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.concretely-stack {
   border-top: 2px solid var(--ink);
-  border-left: 1px solid var(--hairline);
 }
-.concretely-col {
-  padding: 36px 28px;
-  border-right: 1px solid var(--hairline);
+.concretely-row {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 24px;
+  padding: 22px 0;
   border-bottom: 1px solid var(--hairline);
-  background: var(--paper);
+  align-items: baseline;
+  text-align: left;
 }
-.concretely-label {
+.concretely-row .concretely-label {
   font-family: var(--display);
   font-weight: 600;
-  font-size: 22px;
-  letter-spacing: -0.02em;
-  margin: 0 0 16px 0;
+  font-size: 18px;
+  letter-spacing: -0.015em;
+  margin: 0;
   color: var(--ink);
   position: relative;
-  padding-bottom: 14px;
+  padding-bottom: 8px;
 }
-.concretely-label::after {
+.concretely-row .concretely-label::after {
   content: "";
   position: absolute;
-  left: 0; bottom: 0;
-  width: 32px; height: 3px;
+  left: 0; bottom: -2px;
+  width: 28px; height: 3px;
   background: var(--mint);
 }
-.concretely-col p {
-  font-size: 15px;
+.concretely-row p:last-child {
+  font-size: 15.5px;
   line-height: 1.6;
   color: var(--ink);
+  margin: 0;
+}
+
+.concretely-image {
+  margin: 0;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  padding: 16px;
+  position: sticky;
+  top: 96px;
+}
+.concretely-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #EEF1F2;  /* visible if the image file is missing */
+  min-height: 360px;
+}
+.concretely-image figcaption {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--neutral-2);
+  text-align: center;
+  margin-top: 14px;
 }
 
 @media (max-width: 980px) {
-  .concretely { grid-template-columns: 1fr; }
+  .concretely-grid { grid-template-columns: 1fr; gap: 40px; }
+  .concretely-image { position: static; }
+  .concretely-image img { min-height: 240px; }
+}
+@media (max-width: 600px) {
+  .concretely-row { grid-template-columns: 1fr; gap: 8px; }
 }
 
-/* ----- NEW v3 — Tuesday morning timeline --------------------------------- */
+/* ==========================================================================
+   v3.1 — Section 3: "A Tuesday morning" — per-beat timeline with image well
+   ========================================================================== */
 
-.tuesday-grid {
-  display: grid;
-  grid-template-columns: minmax(260px, 1fr) minmax(0, 2fr);
-  gap: 80px;
-  align-items: start;
-}
-.tuesday-label .title {
-  color: var(--ink-paper);
-  font-size: clamp(34px, 4.4vw, 56px);
-}
-.tuesday-lede {
-  font-family: var(--display);
-  font-size: clamp(17px, 1.4vw, 19px);
-  line-height: 1.5;
-  color: var(--ink-neutral);
-  margin-top: 24px !important;
-  font-weight: 400;
-  letter-spacing: 0;
-}
-
-.tuesday-timeline {
+.tuesday-rail {
   list-style: none;
   padding: 0;
   margin: 0;
   position: relative;
-}
-.tuesday-timeline::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 8px; bottom: 8px;
-  width: 2px;
-  background: var(--mint);
-  opacity: 0.45;
+  border-left: 2px solid var(--mint);
+  padding-left: 36px;
 }
 
-.tuesday-beat {
+.t-beat {
   position: relative;
-  padding: 22px 0 22px 36px;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  padding: 26px 0;
   border-bottom: 1px solid var(--ink-hairline);
 }
-.tuesday-beat:last-child { border-bottom: 0; }
-.tuesday-beat::before {
+.t-beat:first-child { padding-top: 6px; }
+.t-beat:last-child  { border-bottom: 0; }
+
+.t-beat::before {
   content: "";
   position: absolute;
-  left: -5px; top: 32px;
-  width: 12px; height: 12px;
+  left: -45px; top: 36px;
+  width: 14px; height: 14px;
   background: var(--mint);
   border: 2px solid var(--ink);
   border-radius: 50%;
 }
+.t-beat:first-child::before { top: 16px; }
 
-.tuesday-time {
+.t-beat-time {
   font-family: var(--mono);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--mint);
-  margin: 0 0 10px 0;
+  padding-top: 4px;
+  text-align: left;
 }
-.tuesday-body {
+
+.t-beat-body p {
   font-family: var(--sans);
-  font-size: 16.5px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--ink-paper);
   margin: 0;
+  text-align: left;
 }
-.tuesday-body strong {
-  color: var(--mint);
-  font-weight: 600;
-}
-.tuesday-body em {
-  font-style: italic;
-  color: var(--ink-paper);
-  opacity: 0.9;
-}
+.t-beat-body strong { color: var(--mint); font-weight: 600; }
+.t-beat-body em     { font-style: italic; opacity: 0.92; }
 
-@media (max-width: 880px) {
-  .tuesday-grid { grid-template-columns: 1fr; gap: 40px; }
+.t-beat-image {
+  margin: 0;
+  background: var(--ink-hairline);
+  border: 1px solid var(--ink-hairline-2);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-@media (max-width: 720px) {
-  .tuesday-beat { padding-left: 24px; }
-  .tuesday-timeline::before { left: 0; }
-  .tuesday-beat::before { left: -5px; }
-}
-
-/* ----- NEW v3 — Diagram frame --------------------------------------------- */
-
-.diagram-frame {
-  margin: 0 auto 64px auto;
-  max-width: 720px;
-  padding: 24px;
-  background: var(--paper);
-  border: 1px solid var(--hairline);
-}
-.diagram-frame img {
+.t-beat-image img {
   width: 100%;
   height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: #2C3030;  /* visible if the image file is missing */
 }
-.diagram-caption {
+.t-beat-image figcaption {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-neutral);
+  text-align: center;
+}
+
+@media (max-width: 980px) {
+  .t-beat {
+    grid-template-columns: 96px minmax(0, 1.4fr);
+    gap: 24px;
+  }
+  .t-beat-image { grid-column: 1 / -1; max-width: 360px; }
+}
+@media (max-width: 600px) {
+  .tuesday-rail { padding-left: 22px; }
+  .t-beat {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .t-beat::before { left: -29px; }
+  .t-beat-image { max-width: 100%; }
+}
+
+/* ==========================================================================
+   v3.1 — Section 4: "The system" — header & diagram removed; quadrants only
+   ========================================================================== */
+
+.map-kicker {
+  text-align: center;
+  margin: 0 0 56px 0;
+  color: var(--neutral);
   font-family: var(--mono);
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--neutral);
-  text-align: center;
-  margin-top: 18px;
-}
-
-@media (max-width: 720px) {
-  .diagram-frame { padding: 16px; margin-bottom: 48px; }
 }
 
 /* ----- Gains grid (productivity hook) ------------------------------------ */
@@ -680,6 +724,16 @@ p { margin: 0; }
   font-weight: 600;
 }
 
+.tuesday-lede {
+  font-family: var(--display);
+  font-size: clamp(17px, 1.4vw, 19px);
+  line-height: 1.5;
+  color: var(--ink-neutral);
+  margin-top: 24px !important;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
 .ladder {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -776,7 +830,6 @@ p { margin: 0; }
   color: var(--neutral);
 }
 
-/* NEW v3 — "What you'll see" line on automation cards */
 .auto-see {
   margin-top: auto;
   padding-top: 16px;
